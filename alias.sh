@@ -8,6 +8,8 @@ alias g='git'
 alias gd="git diff"
 alias gdd="git diff --cached"
 alias gdt="git difftool"
+alias gll="git log -p -2"
+
 alias ber="bundle exec rails"
 alias ctags_build="ctags -R -f .tags"
 alias tmux="TERM=screen-256color-bce tmux"
@@ -17,3 +19,5 @@ alias btest='bundle exec ruby -I.:test -e "ARGV.each{|f| require f}"'
 alias vs="cd ~/Code/vagrant && vagrant ssh"
 alias vu="vagrant up"
 alias vs="cd ~/Code/Ruby/vagrant && vagrant ssh"
+
+alias preview="fzf --preview 'bat --color \"always\" {}'"
