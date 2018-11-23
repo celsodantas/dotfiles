@@ -1,0 +1,52 @@
+#!/usr/local/bin/ruby
+
+cache_status_code = '.git_status_cache'
+
+class String
+  def red
+    "\e[31m#{self}\e[0m"
+  end
+
+  def yellow
+    "\e[33m#{self}\e[0m"
+  end
+
+  def green
+    "\e[32m#{self}\e[0m"
+  end
+end
+
+
+if File.directory?('.git')
+  current_branch_name = `git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'`.strip
+
+  branch_name = if File.exist?(cache_status_code)
+    file = File.open(cache_status_code)
+    git_status = file.read.strip
+
+    nothing_to_commit = /nothing to commit/
+    have_uncommited_changes = /Changes not staged for commit/
+    untracked_files = /Untracked files/
+    change_to_commit = /Changes to be committed/
+    rebasing = /(rebase in progress)|(rebasing branch)/
+
+    if git_status =~ nothing_to_commit
+      current_branch_name.green
+    elsif git_status =~ rebasing
+      "#{current_branch_name}+rebasing".red
+    elsif git_status =~ have_uncommited_changes
+      current_branch_name.red + " ↑".yellow
+    elsif git_status =~ untracked_files
+      current_branch_name.red
+    elsif git_status =~ change_to_commit
+      current_branch_name.yellow
+    else
+      "#{current_branch_name} [status failed]".red
+    end
+  else
+    current_branch_name
+  end
+
+  print "(#{branch_name})"
+end
+

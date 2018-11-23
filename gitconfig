@@ -1,6 +1,6 @@
 [user]
 	name = Celso Dantas
-	email = celsodantas@gmail.com
+	email = celso.dantas@booking.com
 [alias]
 	s  = status
  	st = status
@@ -42,5 +42,4 @@
 	required = true
 	process = git-lfs filter-process
 [pager]
-  diff = diff-so-fancy | less --tabs=1,5 -RFX
-  show = diff-so-fancy | less --tabs=1,5 -RFX
+  branch = false

@@ -24,14 +24,11 @@ function chpwd() {
 }
 
 # Enables the edition of command lines!
-# press cltr+x cltr+e to open the editor and fix any command line errors
+# press cltr+e to open the editor and fix any command line errors
 autoload edit-command-line
 zle -N edit-command-line
-bindkey '^X^E' edit-command-line
+bindkey '^E' edit-command-line
 
-<<<<<<< HEAD
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-=======
 # commenting this out to avoid conflict with chruby used by shopify dev
 #export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -42,6 +39,62 @@ eval "$(rbenv init -)"
 
 [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
 
-# Shopify stuff - Dont commit
-PRY=1
->>>>>>> cleaning up vim bundle
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Booking proxy
+function proxy () {
+    local PROXYADDR="http://webproxy.corp.booking.com:3128"
+    local OPTION="$1"
+    if [[ $OPTION == "0"  || $OPTION == "off" ||  $OPTION == "no" ]]; then
+        unset http_proxy
+        unset https_proxy
+        unset HTTP_PROXY
+        unset HTTPS_PROXY
+        unset no_proxy
+
+        printf "Proxy off\n"
+    elif [[ $OPTION == "1" ||  $OPTION == "on" || $OPTION == "yes" ]]; then
+        export http_proxy="$PROXYADDR"
+        export https_proxy="$PROXYADDR"
+        export HTTP_PROXY="$PROXYADDR"
+        export HTTPS_PROXY="$PROXYADDR"
+        export no_proxy="localhost,127.0.0.1"
+
+        printf "Proxy configured to $PROXYADDR\n"
+    else
+        printf "http_proxy=$http_proxy\n"
+        printf "https_proxy=$https_proxy\n"
+        printf "HTTP_PROXY=$HTTP_PROXY\n"
+        printf "HTTPS_PROXY=$HTTPS_PROXY\n"
+        printf "Please use 0/1, on/off, yes,no\n"
+    fi
+}
+
+# enabling proxy when in booking's wifi
+/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep 'BK-WIFI' &> /dev/null
+if [ $? = 0 ]; then
+  proxy on
+fi
+
+# setting up perl env
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+export PATH="$HOME/perl5/bin:$PATH"
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+export PATH="$HOME/perl5/bin:$PATH"
+
+# overwriting git command to allow hook on `git status`
+git()
+{
+  if [[ $# -ge 1 && "$1" == "status" ]] then
+      # storing the last git status output into a file to be later
+      # read by other ruby command
+      command git $@ > .git_status_cache
+      cat .git_status_cache
+   else
+      command git $@
+   fi
+}
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

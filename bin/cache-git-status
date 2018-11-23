@@ -1,0 +1,25 @@
+#!/usr/local/bin/ruby
+
+current_directory_is_git = File.directory?('.git')
+git_status_result = ARGV.join
+
+if current_directory_is_git
+  nothing_to_commit = git_status_result =~ /nothing to commit/
+  have_uncommited_changes = git_status_result =~ /Changes not staged for commit/
+  untracked_files = git_status_result =~ /Untracked files/
+  change_to_commit = git_status_result =~ /Changes to be committed/
+
+  file = File.open('.git_status_cache', 'w')
+
+  if nothing_to_commit
+    file.write('nothing_to_commit')
+  elsif have_uncommited_changes
+    file.write('have_uncommited_changes')
+  elsif untracked_files
+    file.write('untracked_files')
+  elsif change_to_commit
+    file.write('change_to_commit')
+  end
+end
+
+

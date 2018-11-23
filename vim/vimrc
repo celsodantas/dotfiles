@@ -108,7 +108,9 @@ set t_Co=256 " 256 colors
 set background=dark
 colorscheme monokai
 
-set clipboard=unnamedplus
+" disabling support for system clipboard - This doesnt work with TMUX.
+" set clipboard=unnamedplus
+
 set cursorline
 
 " =============== Make Vim faster ==================

@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -v $HOME/git_tree/main:/usr/local/git_tree/main -w '/usr/local/git_tree/main' --rm -it docker-registry.booking.com/gitlab-unittest/booking-perl-5.24.3:stable prove -r "$@"
