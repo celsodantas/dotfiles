@@ -12,3 +12,10 @@ cd ~/.dotfiles
 # Downloading submodules
 git submodule init
 git submodule update --recursive
+
+# brew stuff
+brew install fd
+brew install bat
+brew install node
+
+npm install -g tldr
