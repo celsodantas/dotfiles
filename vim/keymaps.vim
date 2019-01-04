@@ -14,7 +14,10 @@ nnoremap <c-l> <c-w>l
 nnoremap <leader>p :NERDTreeToggle<cr>
 
 "map to bufexplorer
-nnoremap <leader>b :BufExplorer<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
+
+"map to CtrlP
+nnoremap <leader>l :CtrlP<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
