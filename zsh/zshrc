@@ -9,6 +9,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.dotfiles/alias.sh
 source ~/.dotfiles/export.sh
 source ~/.dotfiles/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.dotfiles/zsh/history.zsh
 
 # It will enable to use cd -1, cd -2 to go back to previous folders
 setopt AUTO_PUSHD
