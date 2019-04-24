@@ -35,3 +35,7 @@ cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
 git clone https://github.com/dracula/sublime.git "Dracula Color Scheme"
 cd -
 
+
+# install font with powerline support
+open fonts/Monaco\ for\ Powerline.otf
+
