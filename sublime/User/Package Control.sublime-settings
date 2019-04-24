@@ -1,0 +1,32 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AceJump",
+		"AlignTab",
+		"All Autocomplete",
+		"Better CoffeeScript",
+		"Blame Explorer",
+		"ChangeQuotes",
+		"ColorSchemeEditor",
+		"DotENV",
+		"GitHubinator",
+		"GraphQL",
+		"JSON Reindent",
+		"Kotlin",
+		"LSP",
+		"Materialize",
+		"NeoVintageous",
+		"Origami",
+		"Package Control",
+		"RSpec",
+		"RuboCop",
+		"Ruby Slim",
+		"SideBarEnhancements",
+		"SyncedSideBar",
+		"uroboroSQL Formatter"
+	]
+}

@@ -1,0 +1,57 @@
+{
+	"bold_folder_labels": true,
+	"caret_style": "smooth",
+	"color_scheme": "Packages/Dracula Color Scheme/Dracula.tmTheme",
+	"drag_text": false,
+	"ensure_newline_at_eof_on_save": true,
+	"fade_fold_buttons": false,
+	"fallback_encoding": "UTF-8",
+	"file_exclude_patterns":
+	[
+		".tags",
+		".tags_sorted_by_file",
+		".gemtags",
+		".DS_Store"
+	],
+	"folder_exclude_patterns":
+	[
+		".svn",
+		".git",
+		"coverage",
+		"tmp",
+		"pkg",
+		".sass-cache",
+		"node_modules",
+		"log",
+		".vagrant",
+		"generated",
+		"solr",
+		".docker-volumes"
+	],
+	"font_face": "Menlo",
+	"font_size": 12.0,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Six",
+		"Vintage",
+		"Vintageous"
+	],
+	"indent_guide_options":
+	[
+		"draw_active"
+	],
+	"neovintageous_build_version": 11100,
+	"reveal-on-activate": false,
+	"show_full_path": true,
+	"show_minimap": false,
+	"tab_height_short": true,
+	"tab_size": 2,
+	"theme": "Default.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"vintageous_use_ctrl_keys": true,
+	"vintageous_use_super_keys": null,
+	"word_wrap": false
+}

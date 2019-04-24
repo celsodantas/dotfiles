@@ -26,3 +26,12 @@ brew install fzf
 $(brew --prefix)/opt/fzf/install
 
 npm install -g tldr
+
+# sublime text
+mv ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User.backup
+ln -s ~/.dotfiles/sublime/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+
+cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
+git clone https://github.com/dracula/sublime.git "Dracula Color Scheme"
+cd -
+
