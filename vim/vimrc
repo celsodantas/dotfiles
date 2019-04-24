@@ -25,10 +25,12 @@ filetype plugin indent on    " required
 " PERSONAL Vim configs
 "
 
+set encoding=utf-8
+
 let g:Powerline_symbols = 'fancy'
 
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = '›'
+let g:NERDTreeDirArrowCollapsible = '‹'
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
@@ -117,10 +119,19 @@ set scrolloff=8         "Start scrolling when we're 8 lines away from margin
 set sidescrolloff=15
 set sidescroll=1
 
+" ================ Split ============================
+" Open new split panes to right and bottom, which feels more natural than Vim’s default:
+set splitbelow
+set splitright
+
 " ================  Mouse  ==========================
 
 " No mouse support
 " set mouse=a
+
+" ================ Copy Clipboard ===================
+
+set clipboard+=unnamed
 
 " ================ Colors  ==========================
 
@@ -128,7 +139,6 @@ set t_Co=256 " 256 colors
 set background=dark
 colorscheme monokai
 
-set clipboard=unnamedplus
 set cursorline
 
 " =============== Make Vim faster ==================
@@ -142,7 +152,7 @@ set lazyredraw
 " 'c' - the directory of the current file.
 " 'r' - the nearest ancestor that contains one of these directories or files: .git .hg .svn .bzr _darcs
 " 'a' - like c, but only if the current working directory outside of CtrlP is not a direct ancestor of the directory of the current file. 0 or '' (empty string) - disable this feature.
-" let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_working_path_mode = 'r'
 
 " ================ Loading Externals ================
 
@@ -151,3 +161,18 @@ source ~/.vim/keymaps.vim
 " Fuzzyfinder  https://github.com/junegunn/fzf
 set rtp+=~/.fzf
 
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
