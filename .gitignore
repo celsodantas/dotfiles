@@ -3,3 +3,4 @@ vim/bundle/*
 !vim/bundle/vundle/
 .DS_Store
 !sublime/User/Package\ Control.cache/*
+sublime/User/Package\ Control.last-run
