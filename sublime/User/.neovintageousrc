@@ -1,0 +1,9 @@
+" Type :h neovintageousrc for help.
+
+let mapleader=,
+
+nnoremap <leader>. :ToggleZoomPane fraction=0.90<CR>
+nnoremap <leader>wj :CarryFileToPane direction=down<CR>
+nnoremap <leader>wl :CarryFileToPane direction=right<CR>
+nnoremap <leader>wh :CarryFileToPane direction=left<CR>
+nnoremap <leader>wk :CarryFileToPane direction=up<CR>
