@@ -29,4 +29,10 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey '^X^E' edit-command-line
 
+############################
+## FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.dotfiles/zsh/functions/fzf.sh
+source ~/.dotfiles/zsh/keybindings.zsh
+############################
+
