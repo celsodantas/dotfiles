@@ -19,7 +19,6 @@ brew install fd
 brew install bat
 brew install node
 brew install diff-so-fancy
-brew install fd
 brew install ag
 
 brew install fzf
