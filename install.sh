@@ -38,3 +38,7 @@ cd -
 # install font with powerline support
 open fonts/Monaco\ for\ Powerline.otf
 
+# installing vundle for vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo "Now open vim and run :BundleInstall to complete plugins installations"
+
