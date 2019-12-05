@@ -17,6 +17,8 @@ Plugin 'FuzzyFinder'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ddollar/nerdcommenter'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-misc' " required by the easytags
+Plugin 'xolox/vim-easytags'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -176,3 +178,6 @@ endif
 " bind \ (backward slash) to grep shortcut
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
+
+" setting ctags path
+set tags=tags

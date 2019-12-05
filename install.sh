@@ -4,6 +4,7 @@ ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/githelpers ~/.githelpers
 ln -s ~/.dotfiles/vim ~/.vim
+ln -s ~/.dotfiles/pryrc ~/.pryrc
 
 # Installing the theme
 cp ~/.dotfiles/zsh/themes/dantas.zsh-theme ~/.oh-my-zsh/themes
@@ -20,6 +21,7 @@ brew install bat
 brew install node
 brew install diff-so-fancy
 brew install ag
+brew install ctags
 
 brew install fzf
 $(brew --prefix)/opt/fzf/install
