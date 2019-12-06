@@ -17,3 +17,6 @@ alias btest='bundle exec ruby -I.:test -e "ARGV.each{|f| require f}"'
 alias vs="cd ~/Code/vagrant && vagrant ssh"
 alias vu="vagrant up"
 alias vs="cd ~/Code/Ruby/vagrant && vagrant ssh"
+
+# making ag search to use LESS as pager, so multipage results can be paged in the terminal
+alias ag='\ag --pager="less -XFR"'
