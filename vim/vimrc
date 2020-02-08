@@ -24,6 +24,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'yegappan/grep'
 Plugin 'tpope/vim-vinegar'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'benmills/vimux' " allows vim to open a tmux panel and run commands on it (useful for tests)
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -100,6 +101,11 @@ set undofile
 " === file browser configs
 " Do not set netrw as the alternate buffer (#b)! Used also by vim vinegar.
 let g:netrw_altfile = 1
+
+" === VimuxConfig ====
+
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = "40"
 
 " ================ Indentation ======================
 
