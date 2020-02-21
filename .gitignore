@@ -4,5 +4,5 @@ vim/bundle/*
 .DS_Store
 sublime/User/Package\ Control.cache/*
 sublime/User/Package\ Control.last-run
-
+vim/sessions/
 vim/.netrwhist
