@@ -12,19 +12,27 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9' " this includes helpers that other plugings might need
 
 Plugin 'tpope/vim-sensible'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-eunuch'
 Plugin 'powerline/powerline'
 Plugin 'FuzzyFinder'
-Plugin 'ddollar/nerdcommenter'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-commentary'
 Plugin 'vim-misc' " required by the easytags
 Plugin 'xolox/vim-easytags'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'yegappan/grep'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux' " allows vim to open a tmux panel and run commands on it (useful for tests)
+
+Plugin 'benmills/vimux' " allows to run command on a side pannel on tmux
+
+Plugin 'k0kubun/vim-open-github' " opens current file in github with OpenGithub
+
+" Plugin 'ervandew/supertab'
+:
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -33,7 +41,13 @@ filetype plugin indent on    " required
 " PERSONAL Vim configs
 "
 
+let g:VimuxHeight = "40"
+let g:VimuxOrientation = "h"
+
+set colorcolumn=120             " adds a line at the column to mark max line
 set encoding=utf-8
+
+set autoread | au CursorHold * checktime " auto reloads the file when changed
 
 let g:Powerline_symbols = 'fancy'
 
@@ -192,20 +206,22 @@ source ~/.vim/keymaps.vim
 set rtp+=~/.fzf
 
 " The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
+if executable('rg')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " let g:ctrlp_user_command = 'rg --files --smart-case %s'
 
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  " " ag is fast enough that CtrlP doesn't need to cache
+  " let g:ctrlp_use_caching = 0
+
+  " set grepprg=rg\ --vimgrep\ --no-heading
+  " set grepformat=%f:%l:%c:%m,%f:%l:%m
+
+  nmap <Leader>\ :Rg 
 endif
 
 " bind \ (backward slash) to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag<SPACE>
+"command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+"nnoremap \ :Ag<SPACE>
 
 " setting ctags path
 set tags=tags
@@ -213,6 +229,21 @@ set tags=tags
 " triggers the find with the word unde the cursor
 :nnoremap <Leader>f :/\<<C-r><C-w>\>/
 :vnoremap <Leader>f :call CWDSearchAndReplaceVisual()<CR>
+
+map 0 ^
+
+" copy current file path
+nnoremap <Leader>cf :let @+ = expand("%")<CR>
+
+if !has('nvim')
+	if exists('$TMUX')
+		let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+		let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+	else
+		let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+		let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+	endif
+endif
 
 """""""""""""""""""""""""""""""
 " => FUGITIVE
@@ -234,36 +265,23 @@ autocmd FileType git nnoremap <buffer> <leader>gb :Gbrowse<cr>
 " Navigate to current commit hash under the cursor inside the blame window
 autocmd FileType fugitiveblame nnoremap <buffer> <leader>gb :execute ":Gbrowse " . expand("<cword>")<cr>
 
+" FZF config
+let $FZF_DEFAULT_COMMAND = 'rg --ignore-case --files'
+let $FZF_DEFAULT_OPTS = "--preview 'bat -n --color=always {}'"
 
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --ignore-case --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
-""""""""
-" FUNCTIONS
-""""""""
+" Global line completion (not just open buffers. ripgrep required.)
+inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
+  \ 'prefix': '^.*$',
+  \ 'source': 'rg -n ^ --color always',
+  \ 'options': '--ansi --delimiter : --nth 3..',
+  \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
 
-function! Escape(toescape)
-    return escape(a:toescape, '\\/.*$^~[]<>{}')
-endfunction
-
-" Returns the visual selection
-function! VisualSelection()
-    try
-        let a_save = @a
-        silent normal! gv"ay
-        return @a
-    finally
-        let @a = a_save
-    endtry
-endfunction
-
-" Search and replace the visual selection in the project
-function! CWDSearchAndReplaceVisual()
-    "call inputsave()
-    let visual_select = Escape(VisualSelection())
-    if visual_select != ''
-        "call visual_select
-        execute ":/" . visual_select
-
-        "exec "cdo s/" . visual_select . "/" . replacement ."/gc"
-    endif
-    "call inputrestore()
-endfunction
+" :FormatJSON command is available to format pretty format JSON content
+com! FormatJSON %!python -m json.tool

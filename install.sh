@@ -21,6 +21,7 @@ brew install bat
 brew install node
 brew install diff-so-fancy
 brew install ag
+brew install ripgrep
 brew install ctags
 
 brew install fzf

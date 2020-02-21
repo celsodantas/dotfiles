@@ -11,10 +11,12 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 "map to bufexplorer
-nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>b :Buffers<cr>
 
 "map to CtrlP
-nnoremap <leader>l :CtrlP<cr>
+" tmp removing this in favour of FZF
+nnoremap <C-p> :Files<Cr>
+"nnoremap <leader>l :CtrlP<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
