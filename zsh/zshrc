@@ -51,6 +51,7 @@ for file in /Users/celsodantas/src/github.com/Shopify/cloudplatform/workflow-uti
 source /Users/celsodantas/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
 RIPGREP_CONFIG_PATH="~/.ripgreprc"
+FZF_DEFAULT_OPTS='-i'
 
 # using ripgrep combined with preview
 # find-in-file - usage: fif <searchTerm>
@@ -63,11 +64,10 @@ ff() {
   # rg --color always --line-number --no-heading \"$1\" | fzf --ansi
   # local out file
   # out=("$(rg --color always --line-number --no-heading \"$1\" | fzf --ansi --expect=ctrl-o)")
-  read -r file line <<<"$(rg --color always --line-number --no-heading \"$1\" | fzf --ansi | awk -F: '{ print $1, $2 }')"
-
-  printf "opening %s:%s\n" $file $line
+  read -r file line <<<"$(rg --color always --line-number --no-heading "$@" | fzf --ansi | awk -F: '{ print $1, $2 }')"
 
   if [[ -n $file ]]; then
+    printf "opening %s:%s\n" $file $line
     vim $file +$line
   fi
 }

@@ -267,7 +267,7 @@ autocmd FileType fugitiveblame nnoremap <buffer> <leader>gb :execute ":Gbrowse "
 
 " FZF config
 let $FZF_DEFAULT_COMMAND = 'rg --ignore-case --files'
-let $FZF_DEFAULT_OPTS = "--preview 'bat -n --color=always {}'"
+let $FZF_DEFAULT_OPTS = "-i --preview 'bat -n --color=always {}'"
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
