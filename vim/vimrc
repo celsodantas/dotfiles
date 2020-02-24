@@ -27,8 +27,6 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux' " allows vim to open a tmux panel and run commands on it (useful for tests)
 
-Plugin 'benmills/vimux' " allows to run command on a side pannel on tmux
-
 Plugin 'k0kubun/vim-open-github' " opens current file in github with OpenGithub
 
 " Plugin 'ervandew/supertab'
