@@ -301,6 +301,10 @@ endif
 " Keymaps
 """""""""""
 
+" this along side enabling iTerm to send +c (Esc+ c) allows mac's cmd+c to copy things
+" see https://github.com/neovim/neovim/issues/5052#issuecomment-232083842
+vnoremap <M-c> "+y
+
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
