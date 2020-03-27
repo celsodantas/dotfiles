@@ -20,3 +20,5 @@ alias vs="cd ~/Code/Ruby/vagrant && vagrant ssh"
 
 # making ag search to use LESS as pager, so multipage results can be paged in the terminal
 alias ag='\ag --pager="less -XFR"'
+
+alias vim=nvim
