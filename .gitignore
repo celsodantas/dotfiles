@@ -1,6 +1,5 @@
 !vim/bundle/
-vim/bundle/*
-!vim/bundle/vundle/
+vim/plugged/*
 .DS_Store
 sublime/User/Package\ Control.cache/*
 sublime/User/Package\ Control.last-run

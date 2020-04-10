@@ -27,7 +27,7 @@ function chpwd() {
 # press cltr+x cltr+e to open the editor and fix any command line errors
 autoload edit-command-line
 zle -N edit-command-line
-bindkey '^X^E' edit-command-line
+bindkey '^E^E' edit-command-line
 
 ############################
 ## FZF
