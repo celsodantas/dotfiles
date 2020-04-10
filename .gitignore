@@ -3,5 +3,10 @@ vim/plugged/*
 .DS_Store
 sublime/User/Package\ Control.cache/*
 sublime/User/Package\ Control.last-run
+sublime/**/*.crt
+
+# sublime keys
+sublime/**/*-ca-* 
+
 vim/sessions/
 vim/.netrwhist

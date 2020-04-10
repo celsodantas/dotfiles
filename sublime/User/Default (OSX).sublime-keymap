@@ -1,3 +1,4 @@
 [
   { "keys": ["super+shift+h"], "command": "goto_definition" },
+  { "keys": ["super+shift+l"], "command": "extended_switcher", "args": {"list_mode": "window"} },
 ]
