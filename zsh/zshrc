@@ -42,9 +42,11 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
 
-# cloudplatform: add Shopify clusters to your local kubernetes config
-export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/celsodantas/.kube/config:/Users/celsodantas/.kube/config.shopify.cloudplatform
-for file in /Users/celsodantas/src/github.com/Shopify/cloudplatform/workflow-utils/*.bash; do source ${file}; done
+if [ ! $SPIN ]; then
+  # cloudplatform: add Shopify clusters to your local kubernetes config
+  export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/celsodantas/.kube/config:/Users/celsodantas/.kube/config.shopify.cloudplatform
+  for file in /Users/celsodantas/src/github.com/Shopify/cloudplatform/workflow-utils/*.bash; do source ${file}; done
+fi 
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
