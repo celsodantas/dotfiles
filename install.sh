@@ -24,13 +24,26 @@ git submodule update --recursive
 
 # SPIN - Shopify specific
 if [ $SPIN ]; then
-	sudo apt-get install -y ctags
-	sudo apt-get install -y fzf
-	sudo apt-get install -y ripgrep
-	sudo apt-get install -y nodejs
-	sudo apt-get install -y fd-find
+	if ! command -v ctags &> /dev/null; then
+		sudo apt-get install -y ctags
+	fi
 
-	sudo ln -s $(which fdfind) /usr/bin/fd # allowing fd usage instead of fdfind
+	if ! command -v fzf &> /dev/null; then
+  	sudo apt-get install -y fzf
+	fi
+
+	if ! command -v rg &> /dev/null; then
+		sudo apt-get install -y ripgrep
+	fi
+
+	if ! command -v node &> /dev/null; then
+		sudo apt-get install -y nodejs
+	fi
+
+	if ! command -v fdfind &> /dev/null; then
+		sudo apt-get install -y fd-find
+		sudo ln -s $(which fdfind) /usr/bin/fd # allowing fd usage instead of fdfind
+	fi
 else
 	# brew stuff
 	brew install fd
