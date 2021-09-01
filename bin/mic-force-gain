@@ -1,2 +1,2 @@
 #!/bin/zsh
-while true; do  osascript -e "set volume input volume 25"; sleep 0.1; done
+while true; do  osascript -e "set volume input volume 7"; sleep 0.1; done

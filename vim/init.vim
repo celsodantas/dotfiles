@@ -15,12 +15,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'benmills/vimux' " allows vim to open a tmux panel and run commands on it (useful for tests)
 
+Plug 'easymotion/vim-easymotion'
+
 Plug 'jlanzarotta/bufexplorer' " buffer explorer (giving this a try)
 
-" Yes. I use both.
-Plug 'tpope/vim-vinegar'
-" Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+map <leader>t :NERDTreeToggle<CR>
+map <leader>T :NERDTreeFind<CR>
 
 " UI
 Plug 'drewtempelmeyer/palenight.vim'
@@ -28,7 +29,7 @@ Plug 'itchyny/lightline.vim'
  
 Plug 'bogado/file-line' " allows opening a file and jumping to a line with format:  filename:89 
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ervandew/supertab'
 
 call plug#end()
 
@@ -64,7 +65,7 @@ set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
 set iskeyword-=.                " '.' is an end of word designator
 set iskeyword-=#                " '#' is an end of word designator
-set iskeyword-=-                " '-' is an end of word designator
+set iskeyword+=_
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 		  \,sm:block-blinkwait175-blinkoff150-blinkon175
 
@@ -174,49 +175,6 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" to edit snippets: CocCommand snippets.editSnippets
-let g:coc_global_extensions = [
-      \ 'coc-snippets',  
-      \ 'coc-pairs',
-      \ 'coc-solargraph',
-      \ 'coc-json',
-      \ ]
-
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 " =========== NERDTree ===============================
 
 " " sync open file with NERDTree
@@ -289,7 +247,7 @@ endfunction
 set synmaxcol=300
 set ttyfast
 "set ttyscroll=3 -- disabling bc of neovim
-set lazyredraw 
+" set lazyredraw  -- tmp disable as it was cuasing the cursor to be slow as fuck
 
 " ================ Loading Externals ================
 
@@ -332,6 +290,13 @@ endif
 """""""""""
 " Keymaps
 """""""""""
+
+" disabling Ex mode. Bc this shit is useless
+map q: <Nop>
+nnoremap Q <nop>
+
+" allow pressing ctrl+w n to go into Normal mode when in the vim terminal
+tnoremap <C-W>n <C-\><C-n>
 
 " nmap <c-t> :NERDTreeToggle<CR>
 
@@ -484,6 +449,16 @@ function! VisualSelection()
     endtry
 endfunction
 
+"""""""""""""""""""""""""""
+" => EasyMotion
+"""""""""""""""""""""""""""
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+map <Leader>; <Plug>(easymotion-overwin-f2)
 
 """""""""""""""""""""""""""""""
 " => FUGITIVE

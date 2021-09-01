@@ -6,10 +6,10 @@ DISABLE_AUTO_UPDATE=true # disables ZSH autoupdate
 plugins=(git osx chruby thor)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.dotfiles/alias.sh
-source ~/.dotfiles/export.sh
-source ~/.dotfiles/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.dotfiles/zsh/history.zsh
+source ~/dotfiles/alias.sh
+source ~/dotfiles/export.sh
+source ~/dotfiles/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/dotfiles/zsh/history.zsh
 
 # It will enable to use cd -1, cd -2 to go back to previous folders
 setopt AUTO_PUSHD
@@ -27,13 +27,13 @@ function chpwd() {
 # press cltr+x cltr+e to open the editor and fix any command line errors
 autoload edit-command-line
 zle -N edit-command-line
-bindkey '^E^E' edit-command-line
+bindkey '^R^E' edit-command-line
 
 ############################
 ## FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ~/.dotfiles/zsh/functions/fzf.sh
-source ~/.dotfiles/zsh/keybindings.zsh
+source ~/dotfiles/zsh/functions/fzf.sh
+source ~/dotfiles/zsh/keybindings.zsh
 ############################
 
 
@@ -71,3 +71,6 @@ ff() {
     vim $file +$line
   fi
 }
+if [ -e /Users/celsodantas/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/celsodantas/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+[[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }

@@ -8,19 +8,19 @@
 Clone the project:
 
 ```
-git clone git@github.com:celsodantas/dotfiles.git ~/.dotfiles
+git clone git@github.com:celsodantas/dotfiles.git ~/dotfiles
 ```
 
 Now create symlinks to it:
 
 ```
-cd ~/.dotfiles && ./install.sh
+cd ~/dotfiles && ./install.sh
 ```
 
-Now copy the theme under the `~/.dotfiles/zsh/themes/dantas.zsh-theme` to `~/.oh-my-zsh/themes`.
+Now copy the theme under the `~/dotfiles/zsh/themes/dantas.zsh-theme` to `~/.oh-my-zsh/themes`.
 
 ```
-cp ~/.dotfiles/zsh/themes/dantas.zsh-theme ~/.oh-my-zsh/themes
+cp ~/dotfiles/zsh/themes/dantas.zsh-theme ~/.oh-my-zsh/themes
 ```
 
 # Mac OS changes
