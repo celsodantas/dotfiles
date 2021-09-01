@@ -1,5 +1,5 @@
 export PATH="$HOME/dotfiles/bin:$PATH"
-export PATH="$HOME/dotfiles/diff-so-fancy:$PATH"
+export PATH="$HOME/dotfiles/vendor/diff-so-fancy:$PATH"
 export PATH="$HOME/bin:$PATH"
 
 export EDITOR=nvim
