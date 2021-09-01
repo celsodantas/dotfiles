@@ -2,10 +2,15 @@
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Recreating the aliases
-rm ~/.zshrc 		 && ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
-rm ~/.gitconfig  && ln -s ~/dotfiles/gitconfig ~/.gitconfig
-rm ~/.githelpers && ln -s ~/dotfiles/githelpers ~/.githelpers
-rm ~/.pryrc 		 && ln -s ~/dotfiles/pryrc ~/.pryrc
+
+[ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.bk
+ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+
+[ -f ~/.gitconfig ] && mv ~/.gitconfig ~/.gitconfig.bk
+ln -s ~/dotfiles/gitconfig ~/.gitconfig
+
+[ ! -f ~/.githelpers ]	&& ln -s ~/dotfiles/githelpers ~/.githelpers
+[ ! -f ~/.pryrc ]				&& ln -s ~/dotfiles/pryrc ~/.pryrc
 
 # setup nvim if .config doesn't exist
 if [ ! -d ~/.config/ ]; then 
@@ -44,6 +49,9 @@ if [ $SPIN ]; then
 		sudo apt-get install -y fd-find
 		sudo ln -s $(which fdfind) /usr/bin/fd # allowing fd usage instead of fdfind
 	fi
+	
+	git config --global user.email celso.dantas@shopify.com
+	git config --global --unset credential.helper
 else
 	# brew stuff
 	brew install fd

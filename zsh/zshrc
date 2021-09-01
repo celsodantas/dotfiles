@@ -3,7 +3,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="dantas"
 DISABLE_AUTO_UPDATE=true # disables ZSH autoupdate
 
-plugins=(git osx chruby thor)
+plugins=(git osx thor)
 
 source $ZSH/oh-my-zsh.sh
 source ~/dotfiles/alias.sh
@@ -46,11 +46,13 @@ if [ ! $SPIN ]; then
   # cloudplatform: add Shopify clusters to your local kubernetes config
   export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/celsodantas/.kube/config:/Users/celsodantas/.kube/config.shopify.cloudplatform
   for file in /Users/celsodantas/src/github.com/Shopify/cloudplatform/workflow-utils/*.bash; do source ${file}; done
+
+  source /Users/celsodantas/Library/Preferences/org.dystroy.broot/launcher/bash/br
 fi 
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-source /Users/celsodantas/Library/Preferences/org.dystroy.broot/launcher/bash/br
+
 
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 FZF_DEFAULT_OPTS='-i'
