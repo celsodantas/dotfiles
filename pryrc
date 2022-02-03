@@ -14,5 +14,5 @@ Pry.config.commands.alias_command "hr", "hist -r", desc: "hist -r <command numbe
 
 # Hit Enter to repeat last command
 Pry::Commands.command /^$/, "repeat last command" do
-  _pry_.run_command Pry.history.to_a.last
+  _pry_instance_.run_command Pry.history.to_a.last
 end
