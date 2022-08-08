@@ -14,7 +14,7 @@ if [[ $GIT_REPO_PATH != '' && $GIT_REPO_PATH != '~' && $GIT_REPO_PATH != "$HOME/
   GREEN="%{[32m%}"
   NO_COLOR="%{[0m%}"
 
-  STATUS=`git status 2>/dev/null`
+  STATUS=`git status -uno --ignore-submodules 2>/dev/null`
   STATE=" "
 
   #HELPERS

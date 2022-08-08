@@ -3,7 +3,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="dantas"
 DISABLE_AUTO_UPDATE=true # disables ZSH autoupdate
 
-plugins=(git osx thor)
+plugins=(git macos thor)
 
 source $ZSH/oh-my-zsh.sh
 source ~/dotfiles/alias.sh
@@ -37,21 +37,9 @@ source ~/dotfiles/zsh/keybindings.zsh
 ############################
 
 
-# To activate these completions
-fpath=(/usr/local/share/zsh-completions $fpath)
-
 [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
 
-if [ ! $SPIN ]; then
-  # cloudplatform: add Shopify clusters to your local kubernetes config
-  export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/celsodantas/.kube/config:/Users/celsodantas/.kube/config.shopify.cloudplatform
-  for file in /Users/celsodantas/src/github.com/Shopify/cloudplatform/workflow-utils/*.bash; do source ${file}; done
-
-  source /Users/celsodantas/Library/Preferences/org.dystroy.broot/launcher/bash/br
-fi 
-
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
 
 
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
@@ -78,3 +66,5 @@ ff() {
 if [ -e /Users/celsodantas/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/celsodantas/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 [[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+
+[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)

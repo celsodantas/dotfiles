@@ -40,7 +40,6 @@
 [core]
   autocrlf = false
 	excludesfile = ~/.gitignore
-	commitGraph = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -54,18 +53,7 @@
 	log = diff-so-fancy | less --tabs=1,5 -RFX
 [commit]
   verbose = true
-[diff]
-	algorithm = patience
-[gc]
-	writeCommitGraph = true
-[protocol]
-	version = 2
-[url "https://github.com/Shopify/"]
-	insteadOf = git@github.com:Shopify/
-	insteadOf = git@github.com:shopify/
-	insteadOf = ssh://git@github.com/Shopify/
-	insteadOf = ssh://git@github.com/shopify/
 [diff-so-fancy]
 	stripLeadingSymbols = false
-[credential]
-	helper = store --file /opt/dev/var/private/git_credential_store
+[include]
+	path = /Users/celsodantas/.config/dev/gitconfig
