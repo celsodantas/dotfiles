@@ -12,11 +12,12 @@ ln -s ~/dotfiles/gitconfig ~/.gitconfig
 [ ! -f ~/.githelpers ]	&& ln -s ~/dotfiles/githelpers ~/.githelpers
 [ ! -f ~/.pryrc ]				&& ln -s ~/dotfiles/pryrc ~/.pryrc
 
-# setup nvim if .config doesn't exist
 if [ ! -d ~/.config/ ]; then 
 	mkdir -p ~/.config/
-	ln -s ~/dotfiles/vim ~/.config/nvim
 fi
+
+# setup nvim
+ln -s ~/dotfiles/vim ~/.config/nvim
 
 # Installing the ZSH theme
 cp ~/dotfiles/zsh/themes/dantas.zsh-theme ~/.oh-my-zsh/themes
@@ -52,6 +53,10 @@ if [ $SPIN ]; then
 	
 	git config --global user.email celso.dantas@shopify.com
 	git config --global --unset credential.helper
+
+	# nvim plug setup
+	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 else
 	# brew stuff
 	brew install fd
