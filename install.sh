@@ -72,4 +72,6 @@ else
 	$(brew --prefix)/opt/fzf/install
 fi
 
+vim +'PlugInstall --sync' +qa
+
 npm install -g tldr
