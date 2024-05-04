@@ -29,6 +29,10 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey '^R^E' edit-command-line
 
+# Enable option + arrow to move between words on MacOS
+bindkey "[C" forward-word
+bindkey "[D" backward-word
+
 ############################
 ## FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
