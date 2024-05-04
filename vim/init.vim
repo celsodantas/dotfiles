@@ -26,8 +26,8 @@ map <leader>T :NERDTreeFind<CR>
 " UI
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'itchyny/lightline.vim'
- 
-Plug 'bogado/file-line' " allows opening a file and jumping to a line with format:  filename:89 
+
+Plug 'bogado/file-line' " allows opening a file and jumping to a line with format:  filename:89
 
 Plug 'ervandew/supertab'
 
@@ -41,8 +41,8 @@ let g:VimuxOrientation = "h"
 
 let mapleader = ','
 
-" Toggle paste 
-set pastetoggle=<F2> 
+" Toggle paste
+set pastetoggle=<F2>
 
 set colorcolumn=120             " adds a line at the column to mark max line
 set encoding=utf-8
@@ -78,7 +78,7 @@ set hidden
 noremap <Space><Tab> :b#<CR>
 
 " default to tree
-let g:netrw_liststyle=3 
+let g:netrw_liststyle=3
 
 " disabling record mode - I never use this shit anyway
 map q <Nop>
@@ -92,7 +92,7 @@ set viminfo='100,f1  "Save up to 100 marks, enable capital marks
 " ================ Turn Off Swap Files ==============
 
 set noswapfile
-set nobackup  
+set nobackup
 set nowb
 set nowritebackup
 
@@ -103,7 +103,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 
 " =============== COPY Support ======================
-" Allow yank to copy to Mac's clipboard 
+" Allow yank to copy to Mac's clipboard
 
 " commeting out as this doesnt seems to be working
 " vmap '' :w ! pbcopy<CR><CR>
@@ -179,7 +179,7 @@ set signcolumn=yes
 
 " " sync open file with NERDTree
 " " " Check if NERDTree is open or active
-" function! IsNERDTreeOpen()        
+" function! IsNERDTreeOpen()
 "   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 " endfunction
 
@@ -224,9 +224,9 @@ set cursorline
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 let g:palenight_terminal_italics=1
-let g:lightline = { 
-      \ 'colorscheme': 'palenight', 
-      \'component_function': { 
+let g:lightline = {
+      \ 'colorscheme': 'palenight',
+      \'component_function': {
         \'filename': 'LightlineFilename',
       \}
    \}
@@ -265,7 +265,7 @@ if executable('rg')
   " set grepprg=rg\ --vimgrep\ --no-heading
   " set grepformat=%f:%l:%c:%m,%f:%l:%m
 
-  nmap <Leader>\ :Rg 
+  nmap <Leader>\ :Rg
 endif
 
 " setting ctags path
